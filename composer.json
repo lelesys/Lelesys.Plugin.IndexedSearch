@@ -1,0 +1,22 @@
+{
+	"name": "lelesys/plugin-indexed-search",
+	"description": "A index search plugin for TYPO3 Neos",
+	"license": "LGPL-3.0+",
+	"type":"typo3-flow-plugin",
+	"authors": [
+		{
+			"name": "Lelesys Infotech Pvt Ltd, India",
+			"email": "typo3neos@lelesys.com",
+			"homepage": "http://www.lelesys.com"
+		}
+	],
+	"require": {
+		"typo3/flow":"*",
+		"typo3/neos":"*"
+	},
+	"autoload":{
+		"psr-0":{
+			"Lelesys\\Plugin\\IndexedSearch":"Classes"
+		}
+	}
+}
