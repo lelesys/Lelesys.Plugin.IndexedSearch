@@ -1,0 +1,13 @@
+prototype(Lelesys.Plugin.IndexedSearch:IndexedSearch) < prototype(TYPO3.Neos:Plugin)
+prototype(Lelesys.Plugin.IndexedSearch:IndexedSearch) {
+	package = 'Lelesys.Plugin.IndexedSearch'
+	controller = 'IndexedSearch'
+	action = 'index'
+}
+
+prototype(Lelesys.Plugin.IndexedSearch:SearchResult) < prototype(TYPO3.Neos:Plugin)
+prototype(Lelesys.Plugin.IndexedSearch:SearchResult) {
+	package = 'Lelesys.Plugin.IndexedSearch'
+	controller = 'IndexedSearch'
+	action = 'searchResult'
+}

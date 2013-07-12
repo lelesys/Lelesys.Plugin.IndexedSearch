@@ -1,0 +1,16 @@
+#search-result #search-id {
+	display: none;
+}
+
+#search-result .highlighted {
+	background-color: yellow;
+}
+
+.form-search {
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+
+.search-value {
+	margin-bottom: 10px;
+}

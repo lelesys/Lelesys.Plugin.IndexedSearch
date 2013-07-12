@@ -1,0 +1,31 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+<f:security.ifAccess resource="TYPO3_Neos_Backend_BackendController">
+	<f:then>
+		<p>Search result view</p>
+	</f:then>
+	<f:else>
+		<f:if condition="{searchResults}">
+			<f:then>
+				<div class="alert alert-success">
+					Search result for "{searchParameter}"
+				</div>
+				<div id="search-result">
+					<f:for each="{searchResults}" as="search">
+						<f:for each="{search.searchNode.properties}" as="value">
+
+							<neos:link.node node="{search.pageNode}">{search.pageNode.properties.title}</neos:link.node>
+							<div class="search-value">{value -> f:format.raw()}</div>
+						</f:for>
+					</f:for>
+					<span id="search-id">{searchParameter}</span>
+				</div>
+			</f:then>
+			<f:else>
+				<div class="alert alert-error">
+					No search result found for "{searchParameter}"
+				</div>
+			</f:else>
+		</f:if>
+	</f:else>
+</f:security.ifAccess>
+

@@ -1,0 +1,18 @@
+'Lelesys.Plugin.IndexedSearch:IndexedSearch':
+  superTypes:
+    - 'TYPO3.Neos:Plugin'
+  ui:
+    label: 'Indexed Search Box'
+    group: Plugins
+    inlineEditable: true
+    icon: 'icon-puzzle-piece'
+
+'Lelesys.Plugin.IndexedSearch:SearchResult':
+  superTypes:
+    - 'TYPO3.Neos:Plugin'
+  ui:
+    label: 'Indexed Search Result'
+    group: Plugins
+    inlineEditable: true
+    icon: 'icon-puzzle-piece'
+
