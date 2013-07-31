@@ -11,11 +11,8 @@
 				</div>
 				<div id="search-result">
 					<f:for each="{searchResults}" as="search">
-						<f:for each="{search.searchNode.properties}" as="value">
-
-							<neos:link.node node="{search.pageNode}">{search.pageNode.properties.title}</neos:link.node>
-							<div class="search-value">{value -> f:format.raw()}</div>
-						</f:for>
+							<neos:link.node node="{search.pageNode}">{search.pageTitle}</neos:link.node>
+							<div class="search-value">{search.searchNode -> f:format.raw()}</div>
 					</f:for>
 					<span id="search-id">{searchParameter}</span>
 				</div>
@@ -28,4 +25,3 @@
 		</f:if>
 	</f:else>
 </f:security.ifAccess>
-

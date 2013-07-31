@@ -16,3 +16,17 @@
     inlineEditable: true
     icon: 'icon-puzzle-piece'
 
+'TYPO3.Neos.NodeTypes:Text':
+  properties:
+    text:
+      searchable: TRUE
+
+'TYPO3.Neos.NodeTypes:Headline':
+  properties:
+    title:
+      searchable: TRUE
+
+'TYPO3.Neos.NodeTypes:Html':
+  properties:
+    source:
+      searchable: TRUE
