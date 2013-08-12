@@ -20,6 +20,39 @@ class IndexedSearchController extends \TYPO3\Flow\Mvc\Controller\ActionControlle
 	protected $indexedSearchService;
 
 	/**
+	 * Settings
+	 *
+	 * @var array
+	 */
+	protected $settings;
+
+	/**
+	 * @param array $settings
+	 */
+	public function injectSettings(array $settings) {
+		$this->settings = $settings;
+	}
+
+	/**
+	 * Initializes the view before invoking an action method.
+	 *
+	 * Override this method to solve assign variables common for all actions
+	 * or prepare the view in another way before the action is called.
+	 *
+	 * @param \TYPO3\Flow\Mvc\View\ViewInterface $view The view to be initialized
+	 * @return void
+	 * @api
+	 */
+	protected function initializeView(\TYPO3\Flow\Mvc\View\ViewInterface $view) {
+			// set the template paths from the Settings
+			// so that it can be changed per project
+			// do this only if it is a TemplateView to avoid FATAL errors
+		if ($view instanceof \TYPO3\Fluid\View\TemplateView) {
+			$view->setTemplateRootPath($this->settings['templateRootPath']);
+		}
+	}
+
+	/**
 	 *
 	 * @return void
 	 */
@@ -34,7 +67,7 @@ class IndexedSearchController extends \TYPO3\Flow\Mvc\Controller\ActionControlle
 	 */
 	public function searchResultAction($searchParameter = NULL) {
 		$currentNode = $this->request->getInternalArgument('__node');
-		if ($searchParameter !== NULL) {
+		if ($searchParameter !== NULL && $searchParameter !== '') {
 			$searchResults = $this->indexedSearchService->search($searchParameter, $currentNode);
 			$this->view->assignMultiple(array ('searchResults'=> $searchResults, 'searchParameter' => $searchParameter));
 		}

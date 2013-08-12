@@ -1,0 +1,7 @@
+Lelesys:
+  Plugin:
+    IndexedSearch:
+      # Default template paths. DO NOT remove these lines
+      templateRootPath: 'resource://Lelesys.Plugin.IndexedSearch/Private/Templates/'
+
+
