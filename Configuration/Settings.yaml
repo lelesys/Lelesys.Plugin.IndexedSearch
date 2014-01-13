@@ -1,3 +1,8 @@
+TYPO3:
+  Neos:
+    typoScript:
+      autoInclude:
+        'TYPO3.TypoScript': TRUE
 Lelesys:
   Plugin:
     IndexedSearch:

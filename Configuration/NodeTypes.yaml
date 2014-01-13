@@ -1,20 +1,19 @@
+##
+# Search plugin
+#
 'Lelesys.Plugin.IndexedSearch:IndexedSearch':
   superTypes:
     - 'TYPO3.Neos:Plugin'
   ui:
-    label: 'Indexed Search Box'
+    label: 'Search'
     group: plugins
-    inlineEditable: true
     icon: 'icon-puzzle-piece'
-
-'Lelesys.Plugin.IndexedSearch:SearchResult':
-  superTypes:
-    - 'TYPO3.Neos:Plugin'
-  ui:
-    label: 'Indexed Search Result'
-    group: plugins
-    inlineEditable: true
-    icon: 'icon-puzzle-piece'
+  options:
+    pluginViews:
+      'SearchResult':
+        label: 'Search result'
+        controllerActions:
+          'Lelesys\Plugin\IndexedSearch\Controller\IndexedSearchController': ['searchResult']
 
 'TYPO3.Neos.NodeTypes:Text':
   properties:

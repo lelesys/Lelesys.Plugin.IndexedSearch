@@ -4,7 +4,7 @@
 
 resources:
   methods:
-       Lelesys.Plugin.IndexedSearch: 'method(Lelesys\Plugin\IndexedSearch\Controller\IndexedSearchController->(index|initializeView|searchResult)Action())'
+       Lelesys.Plugin.IndexedSearch: 'method(Lelesys\Plugin\IndexedSearch\Controller\IndexedSearchController->*.Action())'
 
 acls:
   Everybody:
