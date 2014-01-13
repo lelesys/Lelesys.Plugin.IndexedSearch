@@ -1,7 +1,8 @@
 <?php
+
 namespace Lelesys\Plugin\IndexedSearch\Domain\Service;
 
-/*                                                                         *
+/* *
  * This script belongs to the package "Lelesys.Plugin.IndexedSearch".      *
  *                                                                         *
  * It is free software; you can redistribute it and/or modify it under     *
@@ -33,8 +34,8 @@ class IndexedSearchService {
 	 * @return array
 	 */
 	public function search($searchParameter, \TYPO3\TYPO3CR\Domain\Model\Node $currentNode) {
-		$currentLocale = (string)$currentNode->getContext()->getLocale();
-		$nodes = $this->nodeSearchService->findByProperties($searchParameter, $this->getSearchabelNodeTypes());
+		$currentLocale = (string) $currentNode->getContext()->getLocale();
+		$nodes = $this->nodeSearchService->findByProperties($searchParameter, $this->getSearchabelNodeTypes(), $currentNode->getContext());
 		$results = array();
 		foreach ($nodes as $node) {
 			$properties = $node->getProperties();
@@ -71,7 +72,7 @@ class IndexedSearchService {
 	 */
 	public function getSearchabelNodeTypes() {
 		$nodeTypes = array();
-		$fullConfiguration = $this->nodeTypeManager->getFullConfiguration();
+		$fullConfiguration = $this->nodeTypeManager->getNodeTypes(FALSE);
 		foreach ($fullConfiguration as $key => $value) {
 			if (isset($value['properties'])) {
 				foreach ($value['properties'] as $propertyName => $propertyValue) {
@@ -85,6 +86,7 @@ class IndexedSearchService {
 		}
 		return $nodeTypes;
 	}
+
 }
 
 ?>

@@ -1,0 +1,12 @@
+#                                                                        #
+# Security policy for the package Lelesys.Plugin.IndexedSearch           #
+#                                                                        #
+
+resources:
+  methods:
+       Lelesys.Plugin.IndexedSearch: 'method(Lelesys\Plugin\IndexedSearch\Controller\IndexedSearchController->(index|initializeView|searchResult)Action())'
+
+acls:
+  Everybody:
+    methods:
+      Lelesys.Plugin.IndexedSearch: GRANT

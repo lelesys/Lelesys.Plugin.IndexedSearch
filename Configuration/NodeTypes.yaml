@@ -3,7 +3,7 @@
     - 'TYPO3.Neos:Plugin'
   ui:
     label: 'Indexed Search Box'
-    group: Plugins
+    group: plugins
     inlineEditable: true
     icon: 'icon-puzzle-piece'
 
@@ -12,7 +12,7 @@
     - 'TYPO3.Neos:Plugin'
   ui:
     label: 'Indexed Search Result'
-    group: Plugins
+    group: plugins
     inlineEditable: true
     icon: 'icon-puzzle-piece'
 
