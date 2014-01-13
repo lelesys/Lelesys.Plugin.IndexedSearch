@@ -66,8 +66,6 @@ class IndexedSearchController extends \TYPO3\Flow\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function searchResultAction($searchParameter = NULL) {
-		$searchArguments = $this->request->getHttpRequest()->getArgument('--lelesys_plugin_indexedsearch-indexedsearch');
-		$searchParameter = $searchArguments['searchParameter'];
 		$currentNode = $this->request->getInternalArgument('__node');
 		if ($searchParameter !== NULL && $searchParameter !== '') {
 			$searchResults = $this->indexedSearchService->search($searchParameter, $currentNode);

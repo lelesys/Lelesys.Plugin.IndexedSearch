@@ -11,6 +11,7 @@ namespace Lelesys\Plugin\IndexedSearch\Domain\Service;
  *                                                                         */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Eel\FlowQuery\FlowQuery;
 
 class IndexedSearchService {
 
@@ -48,9 +49,9 @@ class IndexedSearchService {
 					$searchNode = strip_tags($propetyName);
 				}
 			}
-			while ($node !== NULL && (string) $node->getNodeType() !== 'TYPO3.Neos:Page') {
-				$node = $node->getParent();
-				$pageNode = $currentNode->getNode($node->getPath());
+			if ($node !== NULL && (string) $node->getNodeType() !== 'TYPO3.Neos:Document') {
+				$flowQuery = new FlowQuery(array($node));
+				$pageNode = $flowQuery->closest('[instanceof TYPO3.Neos:Document]')->get(0);
 			}
 			$pageProperties = $pageNode->getProperties();
 			if (is_array($pageProperties['title'])) {
@@ -62,6 +63,7 @@ class IndexedSearchService {
 				$results[] = array('searchNode' => $searchNode, 'pageNode' => $pageNode, 'pageTitle' => $pageTitle);
 			}
 		}
+
 		return $results;
 	}
 
@@ -74,10 +76,11 @@ class IndexedSearchService {
 		$nodeTypes = array();
 		$fullConfiguration = $this->nodeTypeManager->getNodeTypes(FALSE);
 		foreach ($fullConfiguration as $key => $value) {
-			if (isset($value['properties'])) {
-				foreach ($value['properties'] as $propertyName => $propertyValue) {
-					if (isset($propertyValue['searchable']) && isset($propertyValue['type'])) {
-						if ($propertyValue['searchable'] === TRUE && $propertyValue['type'] === 'string') {
+			$properties = $value->getProperties();
+			if (!empty($properties)) {
+				foreach ($properties as $property) {
+					if (isset($property['searchable'])) {
+						if ($property['searchable'] === TRUE) {
 							$nodeTypes[] = $key;
 						}
 					}

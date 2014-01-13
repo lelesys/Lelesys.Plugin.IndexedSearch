@@ -23,5 +23,5 @@ Quick start
  *  add the plugin content element "Indexed Search Box" to the position of your choice, to add search box.
  * render the plugin using typoscript (located in, for example, Packages/Sites/Your.Site/Resources/Private/TypoScript/Root.ts2) with:
   ` object = Lelesys.Plugin.IndexedSearch:IndexedSearch`
-* create hide in menu page to show Indexed search result and give Name (URL) as "searchresult"
-* add the plugin content element "Indexed Search Result" to this page
+* create hide in menu page to show Indexed search result
+* add "plugin view" content element and select master view and plugin view
