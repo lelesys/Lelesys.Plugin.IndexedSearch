@@ -42,11 +42,15 @@ class IndexedSearchService {
 			$properties = $node->getProperties();
 			foreach ($properties as $propetyName) {
 				if (is_array($propetyName)) {
-					if (strpos(strip_tags($propetyName[$currentLocale]), $searchParameter) !== false) {
-						$searchNode = strip_tags($propetyName[$currentLocale]);
+					if (!is_object($propetyName[$currentLocale])) {
+						if (strpos(strip_tags($propetyName[$currentLocale]), $searchParameter) !== false) {
+							$searchNode = strip_tags($propetyName[$currentLocale]);
+						}
 					}
 				} else {
-					$searchNode = strip_tags($propetyName);
+					if (!is_object($propetyName)) {
+						$searchNode = strip_tags($propetyName);
+					}
 				}
 			}
 			if ($node !== NULL && (string) $node->getNodeType() !== 'TYPO3.Neos:Document') {
