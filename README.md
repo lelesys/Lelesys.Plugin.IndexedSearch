@@ -10,14 +10,15 @@ Quick start
 
 * include the plugin's Stylesheet to your own one's where you add other stylesheets of the site.
 
-``
+```
 <link href="{f:uri.resource(path: 'resource://Lelesys.Plugin.IndexedSearch/Public/Stylesheets/IndexedSearch.css')}" rel="stylesheet" media="screen">
-``
+```
 
 * include the plugin's Javascript to your own one's where you add other javascript of the site.
 
-``<script src="{f:uri.resource(path: 'resource://Lelesys.Plugin.IndexedSearch/Public/JavaScript/IndexedSearch.js')}"></script>
-``
+```
+<script src="{f:uri.resource(path: 'resource://Lelesys.Plugin.IndexedSearch/Public/JavaScript/IndexedSearch.js')}"></script>
+```
 
 * you can add search box in two ways:
  *  add the plugin content element "Indexed Search Box" to the position of your choice, to add search box.
