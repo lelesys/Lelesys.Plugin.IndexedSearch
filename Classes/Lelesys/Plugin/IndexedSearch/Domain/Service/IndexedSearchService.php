@@ -35,34 +35,21 @@ class IndexedSearchService {
 	 * @return array
 	 */
 	public function search($searchParameter, \TYPO3\TYPO3CR\Domain\Model\Node $currentNode) {
-		$currentLocale = (string) $currentNode->getContext()->getLocale();
 		$nodes = $this->nodeSearchService->findByProperties($searchParameter, $this->getSearchabelNodeTypes(), $currentNode->getContext());
 		$results = array();
 		foreach ($nodes as $node) {
 			$properties = $node->getProperties();
 			foreach ($properties as $propetyName) {
-				if (is_array($propetyName)) {
-					if (!is_object($propetyName[$currentLocale])) {
-						if (strpos(strip_tags($propetyName[$currentLocale]), $searchParameter) !== false) {
-							$searchNode = strip_tags($propetyName[$currentLocale]);
-						}
-					}
-				} else {
-					if (!is_object($propetyName)) {
-						$searchNode = strip_tags($propetyName);
-					}
-				}
+                if (!is_object($propetyName)) {
+                    $searchNode = strip_tags($propetyName);
+                }
 			}
 			if ($node !== NULL && (string) $node->getNodeType() !== 'TYPO3.Neos:Document') {
 				$flowQuery = new FlowQuery(array($node));
 				$pageNode = $flowQuery->closest('[instanceof TYPO3.Neos:Document]')->get(0);
 			}
 			$pageProperties = $pageNode->getProperties();
-			if (is_array($pageProperties['title'])) {
-				$pageTitle = $pageProperties['title'][$currentLocale];
-			} else {
-				$pageTitle = $pageProperties['title'];
-			}
+            $pageTitle = $pageProperties['title'];
 			if (isset($searchNode) && isset($pageTitle)) {
 				$results[] = array('searchNode' => $searchNode, 'pageNode' => $pageNode, 'pageTitle' => $pageTitle);
 			}
