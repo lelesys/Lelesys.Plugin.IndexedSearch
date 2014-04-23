@@ -11,8 +11,7 @@
 		}
 	],
 	"require": {
-		"typo3/flow":"2.1.*",
-		"typo3/neos":"1.0.*"
+		"typo3/neos":"dev-master"
 	},
 	"autoload":{
 		"psr-0":{
