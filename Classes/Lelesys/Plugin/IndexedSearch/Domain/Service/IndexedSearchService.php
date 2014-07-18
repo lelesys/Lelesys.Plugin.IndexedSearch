@@ -47,11 +47,12 @@ class IndexedSearchService {
 			if ($node !== NULL && (string) $node->getNodeType() !== 'TYPO3.Neos:Document') {
 				$flowQuery = new FlowQuery(array($node));
 				$pageNode = $flowQuery->closest('[instanceof TYPO3.Neos:Document]')->get(0);
-			}
-			$pageProperties = $pageNode->getProperties();
-            $pageTitle = $pageProperties['title'];
-			if (isset($searchNode) && isset($pageTitle)) {
-				$results[] = array('searchNode' => $searchNode, 'pageNode' => $pageNode, 'pageTitle' => $pageTitle);
+				if ($pageNode instanceof \TYPO3\TYPO3CR\Domain\Model\NodeInterface) {
+					$pageTitle = $pageNode->getProperty('title');
+					if (isset($searchNode) && isset($pageTitle)) {
+						$results[] = array('searchNode' => $searchNode, 'pageNode' => $pageNode, 'pageTitle' => $pageTitle);
+					}
+				}
 			}
 		}
 
