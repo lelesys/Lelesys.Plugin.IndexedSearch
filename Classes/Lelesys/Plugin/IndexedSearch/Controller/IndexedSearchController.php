@@ -57,6 +57,13 @@ class IndexedSearchController extends \TYPO3\Flow\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function indexAction() {
+		$currentNode = $this->request->getInternalArgument('__documentNode');
+		$searchNode = $currentNode->getContext()->getCurrentSiteNode()->getNode('search');
+		$request = $this->controllerContext->getRequest()->getMainRequest();
+		$uriBuilder = clone $this->controllerContext->getUriBuilder();
+		$uriBuilder->setRequest($request);
+		$uri = $uriBuilder->uriFor('show', array('node' => $searchNode), 'Frontend\Node', 'TYPO3.Neos');
+		$this->view->assign('searchUri', $uri);
 	}
 
 	/**
