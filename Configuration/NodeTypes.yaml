@@ -30,3 +30,13 @@
   properties:
     source:
       searchable: TRUE
+
+'TYPO3.Neos:Document':
+  properties:
+    hideInSearch:
+      type: boolean
+      ui:
+        label: 'Hide in search'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'document'
