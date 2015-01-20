@@ -11,7 +11,7 @@
 		}
 	],
 	"require": {
-		"typo3/neos":"dev-master"
+		"typo3/neos":"1.2.*"
 	},
 	"autoload":{
 		"psr-0":{
