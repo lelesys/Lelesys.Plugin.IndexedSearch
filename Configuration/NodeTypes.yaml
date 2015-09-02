@@ -6,6 +6,12 @@
     group: plugins
     inlineEditable: true
     icon: 'icon-puzzle-piece'
+  options:
+    'pluginViews':
+      'searchresult':
+        label: 'Search Result'
+        controllerActions:
+          'Lelesys\Plugin\IndexedSearch\Controller\IndexedSearchController': ['searchResult']
 
 'Lelesys.Plugin.IndexedSearch:SearchResult':
   superTypes:

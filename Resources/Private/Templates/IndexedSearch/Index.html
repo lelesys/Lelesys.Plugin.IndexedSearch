@@ -1,6 +1,19 @@
-<f:form actionUri="{searchUri}" name="search" class="form-search pull-right">
-	<div class="input-append">
-		<f:form.textfield class="search-query" name="searchParameter" />
-		<f:form.submit value="Search" class="btn" />
-	</div>
-</f:form>
+{namespace neos=TYPO3\Neos\ViewHelpers}
+<f:if condition='{searchNode}'>
+	<f:then>
+		<f:form actionUri='<neos:uri.node node="{searchNode}" />' name="search" class="form-search pull-right">
+			<div class="input-append">
+				<f:form.textfield class="search-query" name="searchParameter" />
+				<f:form.submit value="Search" class="btn" />
+			</div>
+		</f:form>
+	</f:then>
+	<f:else>
+		<f:form action="searchResult" controller="IndexedSearch" name="search" class="form-search pull-right">
+			<div class="input-append">
+				<f:form.textfield class="search-query" name="searchParameter" />
+				<f:form.submit value="Search" class="btn" />
+			</div>
+		</f:form>
+	</f:else>
+</f:if>

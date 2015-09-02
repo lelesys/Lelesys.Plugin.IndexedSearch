@@ -3,6 +3,10 @@ prototype(Lelesys.Plugin.IndexedSearch:IndexedSearch) {
 	package = 'Lelesys.Plugin.IndexedSearch'
 	controller = 'IndexedSearch'
 	action = 'index'
+	# set this to a page node where you have put the search results plugin
+    # e.g. searchResultsNode = ${q(site).children('search-results').get(0)}
+	searchResultsNode = NULL
+
 }
 
 prototype(Lelesys.Plugin.IndexedSearch:SearchResult) < prototype(TYPO3.Neos:Plugin)

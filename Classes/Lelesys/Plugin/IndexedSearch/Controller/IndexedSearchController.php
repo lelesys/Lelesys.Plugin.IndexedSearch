@@ -57,13 +57,10 @@ class IndexedSearchController extends \TYPO3\Flow\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function indexAction() {
-		$currentNode = $this->request->getInternalArgument('__documentNode');
-		$searchNode = $currentNode->getContext()->getCurrentSiteNode()->getNode('search');
-		$request = $this->controllerContext->getRequest()->getMainRequest();
-		$uriBuilder = clone $this->controllerContext->getUriBuilder();
-		$uriBuilder->setRequest($request);
-		$uri = $uriBuilder->uriFor('show', array('node' => $searchNode), 'Frontend\Node', 'TYPO3.Neos');
-		$this->view->assign('searchUri', $uri);
+		$searchNode = $this->request->getInternalArgument('__searchResultsNode');
+		if($searchNode != NULL) {
+			$this->view->assign('searchNode', $searchNode);
+		}
 	}
 
 	/**
@@ -73,18 +70,18 @@ class IndexedSearchController extends \TYPO3\Flow\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function searchResultAction($searchParameter = NULL) {
+		$searchTerm = $searchParameter;
 		$searchArguments = $this->request->getHttpRequest()->getArgument('--lelesys_plugin_indexedsearch-indexedsearch');
 		if ($searchArguments === NULL) {
 			$searchArguments = $this->request->getHttpRequest()->getArgument('--typo3_neos_nodetypes-page');
+			$searchTerm = $searchArguments['searchParameter'];
 		}
-		$searchParameter = $searchArguments['searchParameter'];
-		$currentNode = $this->request->getInternalArgument('__documentNode');
-		if ($searchParameter !== NULL && $searchParameter !== '') {
-			$searchResults = $this->indexedSearchService->search($searchParameter, $currentNode);
-			$this->view->assignMultiple(array ('searchResults'=> $searchResults, 'searchParameter' => $searchParameter));
+		$currentNode = $this->request->getInternalArgument('__node');
+		if ($searchTerm !== NULL && $searchTerm !== '') {
+			$searchResults = $this->indexedSearchService->search($searchTerm, $currentNode);
+			$this->view->assignMultiple(array ('searchResults'=> $searchResults, 'searchParameter' => $searchTerm));
 		}
 	}
-
 }
 
 ?>
